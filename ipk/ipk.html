@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PROGRAM IPK</title>
+    <link rel="stylesheet" href="./asset/css/bootstrap.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <script src="./asset/js/ipk.js"></script>
+</head>
+<body>
+  <!--HEADER-->
+  <nav class="navbar fixed-top navbar-dark bg-primary">
+      <div class="text-center font-weight-bold text-monospace">
+    <p class="nave">Perhitungan Nilai IPK</p></div>
+  </nav>
+
+<!--isi nya-->
+<div class="atas">
+<!--Form-->
+<div class="forme">
+  <table>
+  <tr>
+<td><label style="width: 200px; margin-left: 10px;">Nama</label></td><td>:</td><td><input type="text" style="width: 300px;margin-left: 10px;" id="nama"></td><td><label style="width: 200px; margin-left: 10px;">Semester</label ></td><td>:</td><td><select id="semester" style="margin-left: 10px;">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+</select></td>
+  </tr>
+  <tr>
+<td><label style="width: 200px; margin-left: 10px;">NIM</label></td><td>:</td><td><input type="number" style="width: 300px; margin-left: 10px;" id="nim"></td><td><label style="width: 200px; margin-left: 10px;">Tahun Ajaran</label></td><td>:</td><td><label>2019/2020</label></td>
+</tr>
+</table><br>
+</div>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card border-primary mb-3 shadow-lg p-2 mb-4 bg-white rounded" style="max-width: 100%;">
+          <div class="card-header text-primary"><h1><b>Input Data</b></h1></div>
+          <div class="card-body">
+            <table class="table">
+                <thead class="thead-primary">
+                    <th style="text-align: center; width: 30px;">No</th><th style="text-align: center;width: 120px;">Mata Kuliah</th><th style="text-align: center;width: 50px;">SKS</th><th style="text-align: center;">Nilai</th><th style="text-align: center; width: 300px;">N * K</th>
+                </thead>
+                <tbody style="text-align: center;">
+                    <tr>
+                        <td>1</td><td>Matkul 1</td><td id="sks1">3</td><td><input type="text" id="nilai1"></td><td><label id="nk1"></label></td>
+                    </tr>
+                    <tr>
+                        <td>2</td><td>Matkul 2</td><td id="sks2">4</td><td><input type="text" id="nilai2"></td><td><label id="nk2"></label></td>
+                    </tr>
+                    <tr>
+                        <td>3</td><td>Matkul 3</td><td id="sks3">2</td><td><input type="text" id="nilai3"></td><td><label id="nk3"></label></td>
+                    </tr>
+                    <tr>
+                        <td>4</td><td>Matkul 4</td><td id="sks4">4</td><td><input type="text" id="nilai4"></td><td><label id="nk4"></label></td>
+                    </tr>
+                    <tr>
+                        <td>5</td><td>Matkul 5</td><td id="sks5">3</td><td><input type="text" id="nilai5"></td><td><label id="nk5"></label></td>
+                    </tr>
+                    <tr>
+                      <td colspan="1"></td>
+                      <td style="color: blue; padding: 10px; width: 100px;"><b>JUMLAH</b></td>
+                      <td style="color: blue;"><b>16</b></td>
+                      <td colspan="1"></td>
+                      <td><button class="btn-primary rounded" style="width: 200px; padding: 10px;" onclick="proses()">LIHAT HASIL</button></td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-primary mb-3 shadow-lg p-2 mb-4 bg-white rounded" style="max-width: 100%;">
+          <div class="card-header text-primary"><h1><b>Result</b></h1></div>
+          <div class="card-body">
+            <label style="width: 200px;">Nama</label><label style="width: 10px;">:</label><label id="namanya"></label><br>
+            <label style="width: 200px;">NIM</label><label style="width: 10px;">:</label><label id="nimnya"></label><br>
+            <label style="width: 200px;">IPK</label><label style="width: 10px;">:</label><label id="ipnya"></label><br>
+            <label style="width: 200px;">Jumlah N*k</label ><label style="width: 10px;">:</label><label id="jumlahnya"></label><br>
+            <label style="width: 200px;">Semester</label><label style="width: 10px;">:</label><label id="semesternya"></label>
+            <button class="btn-primary rounded" style="width: 200px; padding: 10px;" onclick="reset()">RESET</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-7">
+  <div class="card border-primary mb-3 shadow-lg p-2 mb-4 bg-white rounded" style="max-width: 100%;">
+    <div class="card-header text-primary"><h1><b>Keterangan</b></h1></div>
+    <div class="card-body">
+      <pre>
+      N*K didapatkan berdasarkan hasil perkalian antara SKS dengan Nilai Kumulatif. <br>
+      A   : 4 
+      AB  : 3.5 
+      B   : 3 
+      BC  : 2.5 
+      C   : 2 
+      CD  : 1.5 
+      D   : 1 
+      DE  : 0.5
+      E   : 0
+      
+      IP didapat dengan rumus = Jumlah (N*K) / Jumlah SKS
+    </pre>
+    </div>
+  </div>
+</div>
+</body>
+</html>
