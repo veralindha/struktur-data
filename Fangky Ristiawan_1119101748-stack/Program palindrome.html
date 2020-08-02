@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALINDROME</title>
+    <script>
+        function Check(){
+    //array palindrome
+    var string = [];
+    //array caracter untuk pop
+    var stringCtr = [];
+    // array caracter
+    var caractr = [];
+    // input text
+    var txtCari = document.getElementById('txtCari').value;
+    // lakukan pemecahan jadi caracter
+    caractr = txtCari.split("")
+    console.log(caractr);
+    stringCtr = caractr;
+    var i = 0
+    for(i = caractr.length;i > 0; i--){
+        var pop = stringCtr.pop();
+        string.push(pop);
+    }
+    var reverse = string.join("");
+    if(reverse == txtCari){
+        document.getElementById('txtHasil').innerHTML = "kata " + "'" + "<u>" + txtCari + "</u>" + "'" + " adalah kata palindrome";
+    }else{
+        document.getElementById('txtHasil').innerHTML = "kata " + "'" + "<u>" + txtCari + "</u>" + "'" + " bukan kata palindrome";
+    }
+    // kosongkan semua array dan input
+    document.getElementById("txtCari").value = "";
+    string = [];
+    stringCtr = [];
+    caractr = [];
+}
+    </script>
+</head>
+<body>
+    <h1>Program Penentu Kata Palindrome</h1><br>
+    <label >Masukan Kata :</label>
+    <input type="text" id="txtCari"><br>
+    <button onclick="Check()">Check</button>
+    <label id="txtHasil"></label>
+</body>
+</html>
