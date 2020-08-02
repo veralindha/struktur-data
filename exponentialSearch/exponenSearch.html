@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponential Search</title>
+    <script>
+var data = new Array;
+var hasilSort = new Array;
+
+function quickSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+    else {
+        var left = [];
+        var right = [];
+        var newArray = [];
+        var pivot = array.pop();
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] <= pivot) {
+                left.push(array[i]);
+            }
+            else {
+                right.push(array[i]);
+            }
+        }
+        return newArray.concat(quickSort(left), pivot, quickSort(right));
+    }
+}
+
+function tambahAngkaAcak() {
+    var hasil = Math.floor((Math.random() * 20)+1);
+    return hasil;
+}
+
+function binarySearch(value, min, max) {
+    var hasil = false;
+    while (min <= max) {
+        var mid = Math.floor((max + min) / 2);
+        if (hasilSort[mid] == value) {
+            hasil = true;
+            break;
+        }
+        else if (value < hasilSort[mid]) {
+            max = mid - 1;
+        }
+        else {
+            min = mid + 1;
+        }
+    }
+    var hasilBinSearch = [hasil, mid];
+    return hasilBinSearch;
+}
+
+function expSearch(value) {
+    var hasilExponenArray = [];
+    if (hasilSort[0] == value) {
+        hasilExponenArray[0] = true;
+        hasilExponenArray[1] = 0;
+        return hasilExponenArray;
+    }
+    var i = 1;
+    while (i < hasilSort.length && hasilSort[i] <= value) {
+        i = i * 2;
+    }
+    hasilExponenArray = binarySearch(value, i / 2, Math.min(i, (hasilSort.length - 1)));
+    return hasilExponenArray;
+}
+
+function Lihat() {
+    var i = 0;
+    while (i < 15) {
+        i++;
+        var tambahData = tambahAngkaAcak();
+        data.push(tambahData);
+    }
+    var teks = data.slice();
+    document.getElementById('txtArray').innerHTML = teks;
+}
+
+function dataSort() {
+    hasilSort = quickSort(data);
+    document.getElementById('txtArraySort').innerHTML = hasilSort.toString();
+}
+
+function hasilSearch() {
+    var dicari = parseInt(document.getElementById('txtCari').value);
+    var arrayHasil = expSearch(dicari);
+    var hasilnya = document.getElementById('hasil');
+    if (arrayHasil[0] == true) {
+        hasilnya.innerHTML = dicari + " ditemukan pada urutan ke-" + (arrayHasil[1]+1);
+    }
+    else {
+        hasilnya.innerHTML = dicari + " tidak ditemukan di Array";
+    }
+}
+    </script>
+</head>
+<body>
+    <h1>Program Search Metode Exponential Search</h1><br>
+    <button onclick="Lihat()">Lihat Data</button><br>
+    <label id="txtArray"></label><br>
+    <button onclick="dataSort()">Urutkan</button><br>
+    <label id="txtArraySort"></label><br>
+    <label for="">Masukan Data Yang Dicari </label><input type="number" id="txtCari"><br>
+    <button onclick="hasilSearch()">Cari</button><br>
+    <label id="hasil"></label>
+</body>
+</html>
